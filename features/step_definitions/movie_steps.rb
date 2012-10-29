@@ -52,7 +52,9 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.content  is the entire content of the page as a string.
-  flunk "Unimplemented"
+  match = /#{e1}.*#{e2}/m =~ page.body
+
+  assert match != nil, "'#{e1}' must be before '#{e2}' but it is not"
 end
 
 Then /^I should only see movies with these ratings$/ do
